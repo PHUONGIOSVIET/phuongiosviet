@@ -1,27 +1,107 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TrollInstallerX – Cài đặt</title>
-    <style>
-      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; padding: 32px; background: #f9f9f9; }
-      .card { max-width: 600px; margin: auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
-      h1 { margin-top: 0; }
-      .hint { color: #555; }
-      .btn { display: inline-block; padding: 12px 20px; background: #007aff; color: white; border-radius: 8px; text-decoration: none; font-size: 16px; }
-      .btn:hover { background: #005bb5; }
-      .code { background: #f4f4f4; padding: 8px; border-radius: 6px; font-family: monospace; word-wrap: break-word; }
-    </style>
-  </head>
-  <body>
-    <div class="card">
-      <h1>TrollInstallerX</h1>
-      <p class="hint">Mở trang này bằng Safari trên iPhone, sau đó bấm nút bên dưới để cài đặt ứng dụng.</p>
-      <p><a class="btn" href="itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist">⬇️ Cài đặt TrollInstallerX</a></p>
-      <hr>
-      <p class="hint">Hoặc copy link sau và mở trong Safari nếu nút trên không hoạt động:</p>
-      <div class="code">itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist</div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrollInstallerX – Cài đặt & Hướng dẫn Trust</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <style>
+    :root {
+      --bg:#0b1020;
+      --card:#111831;
+      --text:#e8eefc;
+      --muted:#a8b3cf;
+      --accent:#4da3ff;
+      --good:#1db954;
+      --warn:#ffd166;
+      --bad:#ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    .wrap { max-width:900px; margin:auto; padding:28px; }
+    .hero { display:flex; flex-wrap:wrap; gap:24px; align-items:center; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.3); padding:22px; }
+    .app { flex:1 1 320px; }
+    .steps { flex:1 1 320px; }
+    h1 { margin:0 0 8px; font-size:32px; letter-spacing:.2px; }
+    p.muted { color:var(--muted); margin:.2rem 0 1rem; }
+    .btn { display:inline-block; padding:14px 22px; font-weight:600; text-decoration:none; color:#001; background:linear-gradient(180deg,#5fb3ff,#3c8cff); border:none; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,.35); }
+    .btn:active { transform:translateY(1px); }
+    .kbd { background:#0e1630; color:var(--text); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:2px 6px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    ol, ul { margin: .6rem 0 .8rem 1.2rem; }
+    li { margin:.25rem 0; line-height:1.5; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .section h2 { margin:.2rem 0 .6rem; font-size:22px; }
+    .code { word-break: break-all; background:#0e1630; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.06); }
+    .note { font-size:14px; color:var(--muted); }
+    .ok { color:var(--good); }
+    .warn { color:var(--warn); }
+    .err { color:var(--bad); }
+    footer { margin-top:26px; text-align:center; color:var(--muted); font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="card app">
+        <h1>TrollInstallerX</h1>
+        <p class="muted">Cài trực tiếp trên iPhone qua Safari. Yêu cầu ứng dụng đã được ký bằng chứng chỉ hợp lệ.</p>
+        <p><a class="btn" href="itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist">⬇️ Cài đặt TrollInstallerX</a></p>
+        <p class="note">Nếu nút không hoạt động, sao chép link dưới và dán vào thanh địa chỉ Safari:</p>
+        <div class="code">itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist</div>
+      </div>
+      <div class="card steps">
+        <div class="section">
+          <h2>✅ Chuẩn bị</h2>
+          <ul>
+            <li>Mở trang này bằng <strong>Safari</strong> trên iPhone/iPad.</li>
+            <li>Đảm bảo Wi‑Fi/4G ổn định và còn trống bộ nhớ.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>📲 Cài đặt</h2>
+          <ol>
+            <li>Nhấn <strong>“Cài đặt TrollInstallerX”</strong> ở trên.</li>
+            <li>Chọn <span class="kbd">Install</span> khi iOS hỏi.</li>
+            <li>Đợi icon xuất hiện trên màn hình chính.</li>
+          </ol>
+        </div>
+      </div>
     </div>
-  </body>
+
+    <div class="grid" style="margin-top:18px;">
+      <div class="card section">
+        <h2>🔐 Trust chứng chỉ (nếu bị chặn)</h2>
+        <ol>
+          <li>Vào <span class="kbd">Cài đặt → Cài đặt chung → Quản lý VPN & Thiết bị</span>.</li>
+          <li>Chọn <strong>tên chứng chỉ</strong> tương ứng.</li>
+          <li>Nhấn <span class="kbd">Tin cậy</span> (Trust) → nhập passcode nếu được yêu cầu.</li>
+          <li>Mở lại ứng dụng.</li>
+        </ol>
+        <p class="note">Nếu vẫn không mở được, khởi động lại máy rồi thử lại.</p>
+      </div>
+
+      <div class="card section">
+        <h2>🩺 Khắc phục lỗi phổ biến</h2>
+        <ul>
+          <li><span class="err">Cannot Install Application</span>: Thử lại bằng Wi‑Fi khác, đảm bảo link IPA/manifest đúng và còn hoạt động.</li>
+          <li><span class="err">Unable to Download App</span>: Vào <span class="kbd">Cài đặt → Safari</span> → xóa dữ liệu website, sau đó mở lại link.</li>
+          <li><span class="warn">Untrusted Developer</span>: Thực hiện phần <em>Trust chứng chỉ</em> bên cạnh.</li>
+          <li><span class="warn">App Integrity / Sign lỗi</span>: Cần ký lại IPA bằng chứng chỉ và provisioning hợp lệ (đúng bundle id và entitlement).</li>
+        </ul>
+      </div>
+
+      <div class="card section">
+        <h2>ℹ️ Thông tin</h2>
+        <ul>
+          <li>Manifest: <a href="https://quy2.github.io/phuongiosviet/manifest.plist" target="_blank" rel="noopener">https://quy2.github.io/phuongiosviet/manifest.plist</a></li>
+          <li>Mở nhanh: dán link <span class="kbd">itms-services://...</span> vào Safari.</li>
+          <li>Hoạt động tốt nhất trên iOS 12+.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>© TrollInstallerX • Trang cài đặt được tạo tự động.</footer>
+  </div>
+</body>
 </html>
