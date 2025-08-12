@@ -4,104 +4,108 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TrollInstallerX – Cài đặt & Hướng dẫn Trust</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <style>
     :root {
-      --bg:#0b1020;
-      --card:#111831;
-      --text:#e8eefc;
-      --muted:#a8b3cf;
-      --accent:#4da3ff;
-      --good:#1db954;
-      --warn:#ffd166;
-      --bad:#ff6b6b;
+      --bg:#0b1020; --card:#111831; --text:#e8eefc; --muted:#a8b3cf;
     }
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-    .wrap { max-width:900px; margin:auto; padding:28px; }
-    .hero { display:flex; flex-wrap:wrap; gap:24px; align-items:center; }
-    .card { background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.3); padding:22px; }
-    .app { flex:1 1 320px; }
-    .steps { flex:1 1 320px; }
-    h1 { margin:0 0 8px; font-size:32px; letter-spacing:.2px; }
-    p.muted { color:var(--muted); margin:.2rem 0 1rem; }
-    .btn { display:inline-block; padding:14px 22px; font-weight:600; text-decoration:none; color:#001; background:linear-gradient(180deg,#5fb3ff,#3c8cff); border:none; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,.35); }
-    .btn:active { transform:translateY(1px); }
-    .kbd { background:#0e1630; color:var(--text); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:2px 6px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    ol, ul { margin: .6rem 0 .8rem 1.2rem; }
-    li { margin:.25rem 0; line-height:1.5; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
-    .section h2 { margin:.2rem 0 .6rem; font-size:22px; }
-    .code { word-break: break-all; background:#0e1630; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.06); }
-    .note { font-size:14px; color:var(--muted); }
-    .ok { color:var(--good); }
-    .warn { color:var(--warn); }
-    .err { color:var(--bad); }
-    footer { margin-top:26px; text-align:center; color:var(--muted); font-size:13px; }
+    * { box-sizing: border-box }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif }
+    .wrap { max-width:900px; margin:auto; padding:28px }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.3); padding:22px; margin-bottom:20px }
+    h1,h2 { margin-top:0 }
+    .muted { color:var(--muted) }
+    .btn { display:inline-block; padding:14px 22px; font-weight:600; text-decoration:none; color:#001; background:linear-gradient(180deg,#5fb3ff,#3c8cff); border-radius:12px }
+    .code { background:#0e1630; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.06); word-break:break-all }
+    ol,ul { margin-left:20px }
+    li { margin-bottom:6px }
+
+    /* Banner liên hệ: nền gradient chạy + chữ chạy ngang */
+    .contact-wrap { position:relative; overflow:hidden; border-radius:16px }
+    .contact-bg {
+      position:absolute; inset:0;
+      background:linear-gradient(90deg,#ff512f,#f09819,#ff512f);
+      background-size:200% 100%;
+      animation:bgmove 6s linear infinite;
+      filter:saturate(1.2);
+    }
+    @keyframes bgmove {
+      0% { background-position:0% 50% }
+      100% { background-position:100% 50% }
+    }
+    .contact-inner { position:relative; padding:12px 0 }
+    .marquee {
+      display:flex; gap:40px; white-space:nowrap; will-change:transform;
+      animation:scroll 12s linear infinite;
+      font-weight:800; font-size:18px; color:white; text-shadow:0 2px 8px rgba(0,0,0,.35);
+      align-items:center;
+    }
+    .marquee:hover { animation-play-state:paused }
+    @keyframes scroll {
+      0%   { transform:translateX(0) }
+      100% { transform:translateX(-50%) }
+    }
+    .pill {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 14px; background:rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.35); border-radius:999px;
+      box-shadow:0 6px 16px rgba(0,0,0,.25)
+    }
+    .pill a { color:#fff; text-decoration:none }
+    .dot { width:8px; height:8px; border-radius:50%; background:#fff }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="hero">
-      <div class="card app">
-        <h1>TrollInstallerX</h1>
-        <p class="muted">Cài trực tiếp trên iPhone qua Safari. Yêu cầu ứng dụng đã được ký bằng chứng chỉ hợp lệ.</p>
-        <p><a class="btn" href="itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist">⬇️ Cài đặt TrollInstallerX</a></p>
-        <p class="note">Nếu nút không hoạt động, sao chép link dưới và dán vào thanh địa chỉ Safari:</p>
-        <div class="code">itms-services://?action=download-manifest&url=https://quy2.github.io/phuongiosviet/manifest.plist</div>
-      </div>
-      <div class="card steps">
-        <div class="section">
-          <h2>✅ Chuẩn bị</h2>
-          <ul>
-            <li>Mở trang này bằng <strong>Safari</strong> trên iPhone/iPad.</li>
-            <li>Đảm bảo Wi‑Fi/4G ổn định và còn trống bộ nhớ.</li>
-          </ul>
-        </div>
-        <div class="section">
-          <h2>📲 Cài đặt</h2>
-          <ol>
-            <li>Nhấn <strong>“Cài đặt TrollInstallerX”</strong> ở trên.</li>
-            <li>Chọn <span class="kbd">Install</span> khi iOS hỏi.</li>
-            <li>Đợi icon xuất hiện trên màn hình chính.</li>
-          </ol>
+
+    <!-- Banner liên hệ nổi bật -->
+    <div class="card contact-wrap" aria-label="Liên hệ Telegram">
+      <div class="contact-bg"></div>
+      <div class="contact-inner">
+        <div class="marquee">
+          <span class="pill">📢 Nếu cần mua chứng chỉ Apple để cài IPA, TrollStore… liên hệ Telegram: <a href="https://t.me/PHUONGIOSVIET" target="_blank">@PHUONGIOSVIET</a></span>
+          <span class="dot"></span>
+          <span class="pill">📢 Nếu cần mua chứng chỉ Apple để cài IPA, TrollStore… liên hệ Telegram: <a href="https://t.me/PHUONGIOSVIET" target="_blank">@PHUONGIOSVIET</a></span>
+          <span class="dot"></span>
+          <span class="pill">📢 Nếu cần mua chứng chỉ Apple để cài IPA, TrollStore… liên hệ Telegram: <a href="https://t.me/PHUONGIOSVIET" target="_blank">@PHUONGIOSVIET</a></span>
+          <span class="dot"></span>
+          <span class="pill">📢 Nếu cần mua chứng chỉ Apple để cài IPA, TrollStore… liên hệ Telegram: <a href="https://t.me/PHUONGIOSVIET" target="_blank">@PHUONGIOSVIET</a></span>
         </div>
       </div>
     </div>
 
-    <div class="grid" style="margin-top:18px;">
-      <div class="card section">
-        <h2>🔐 Trust chứng chỉ (nếu bị chặn)</h2>
-        <ol>
-          <li>Vào <span class="kbd">Cài đặt → Cài đặt chung → Quản lý VPN & Thiết bị</span>.</li>
-          <li>Chọn <strong>tên chứng chỉ</strong> tương ứng.</li>
-          <li>Nhấn <span class="kbd">Tin cậy</span> (Trust) → nhập passcode nếu được yêu cầu.</li>
-          <li>Mở lại ứng dụng.</li>
-        </ol>
-        <p class="note">Nếu vẫn không mở được, khởi động lại máy rồi thử lại.</p>
-      </div>
-
-      <div class="card section">
-        <h2>🩺 Khắc phục lỗi phổ biến</h2>
-        <ul>
-          <li><span class="err">Cannot Install Application</span>: Thử lại bằng Wi‑Fi khác, đảm bảo link IPA/manifest đúng và còn hoạt động.</li>
-          <li><span class="err">Unable to Download App</span>: Vào <span class="kbd">Cài đặt → Safari</span> → xóa dữ liệu website, sau đó mở lại link.</li>
-          <li><span class="warn">Untrusted Developer</span>: Thực hiện phần <em>Trust chứng chỉ</em> bên cạnh.</li>
-          <li><span class="warn">App Integrity / Sign lỗi</span>: Cần ký lại IPA bằng chứng chỉ và provisioning hợp lệ (đúng bundle id và entitlement).</li>
-        </ul>
-      </div>
-
-      <div class="card section">
-        <h2>ℹ️ Thông tin</h2>
-        <ul>
-          <li>Manifest: <a href="https://quy2.github.io/phuongiosviet/manifest.plist" target="_blank" rel="noopener">https://quy2.github.io/phuongiosviet/manifest.plist</a></li>
-          <li>Mở nhanh: dán link <span class="kbd">itms-services://...</span> vào Safari.</li>
-          <li>Hoạt động tốt nhất trên iOS 12+.</li>
-        </ul>
-      </div>
+    <div class="card">
+      <h1>TrollInstallerX</h1>
+      <p class="muted">Mở trang này bằng Safari trên iPhone/iPad để cài đặt ứng dụng.</p>
+      <p><a class="btn" href="itms-services://?action=download-manifest&url=https://phuongiosviet.github.io/phuongiosviet/manifest.plist">⬇️ Cài đặt TrollInstallerX</a></p>
+      <p class="muted">Nếu nút không hoạt động, sao chép link sau và dán vào thanh địa chỉ Safari:</p>
+      <div class="code">itms-services://?action=download-manifest&url=https://phuongiosviet.github.io/phuongiosviet/manifest.plist</div>
     </div>
 
-    <footer>© TrollInstallerX • Trang cài đặt được tạo tự động.</footer>
+    <div class="card">
+      <h2>🔐 Hướng dẫn Trust chứng chỉ</h2>
+      <ol>
+        <li>Mở <strong>Cài đặt</strong> trên iPhone/iPad.</li>
+        <li>Vào <strong>Cài đặt chung → Quản lý VPN & Thiết bị</strong>.</li>
+        <li>Chọn tên chứng chỉ của ứng dụng.</li>
+        <li>Nhấn <strong>Tin cậy (Trust)</strong> và xác nhận.</li>
+      </ol>
+      <p style="background:#fff3cd; color:#856404; padding:10px; border-radius:8px; font-weight:bold;">
+        ⚠️ Nếu iPhone báo “Xác minh ứng dụng” (Verify App) và không cài được → thiết bị của bạn cần mua chứng chỉ Apple mới. 
+        Liên hệ Telegram: <a href="https://t.me/PHUONGIOSVIET" target="_blank" style="color:#856404; text-decoration:underline;">@PHUONGIOSVIET</a>
+      </p>
+      <p class="muted">Nếu vẫn không mở được app, hãy khởi động lại thiết bị rồi thử lại.</p>
+    </div>
+
+    <div class="card">
+      <h2>🩺 Khắc phục lỗi phổ biến</h2>
+      <ul>
+        <li><strong>Cannot Install Application</strong>: Kiểm tra mạng Wi‑Fi, đảm bảo link IPA/manifest vẫn hoạt động.</li>
+        <li><strong>Unable to Download App</strong>: Vào <em>Cài đặt → Safari</em>, xóa dữ liệu website, sau đó thử lại.</li>
+        <li><strong>Untrusted Developer</strong>: Thực hiện theo hướng dẫn Trust chứng chỉ ở trên.</li>
+        <li><strong>App Integrity / Sign lỗi</strong>: Cần ký lại IPA bằng chứng chỉ hợp lệ.</li>
+      </ul>
+    </div>
+
   </div>
 </body>
 </html>
