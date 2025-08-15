@@ -1,0 +1,50 @@
+name: Re-Sign IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      ipa_url:
+        description: 'Link tải IPA gốc'
+        required: true
+
+jobs:
+  resign:
+    runs-on: macos-latest
+    steps:
+      - name: Download IPA
+        run: curl -L "${{ github.event.inputs.ipa_url }}" -o app.ipa
+
+      - name: Decode Cert & Provision
+        run: |
+          echo "${CERT_P12_BASE64}" | base64 --decode > cert.p12
+          echo "${MOBILEPROV_BASE64}" | base64 --decode > profile.mobileprovision
+        env:
+          CERT_P12_BASE64: ${{ secrets.CERT_P12_BASE64 }}
+          MOBILEPROV_BASE64: ${{ secrets.MOBILEPROV_BASE64 }}
+
+      - name: Install Certificates
+        run: |
+          security create-keychain -p "" build.keychain
+          security import cert.p12 -k ~/Library/Keychains/build.keychain -P "${CERT_PASSWORD}" -A
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+        env:
+          CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+
+      - name: Install ios-deploy & fastlane
+        run: |
+          brew install fastlane
+
+      - name: Re-sign IPA
+        run: |
+          mkdir Payload
+          unzip -q app.ipa -d Payload
+          APP_PATH=$(find Payload -name "*.app")
+          cp profile.mobileprovision "$APP_PATH/embedded.mobileprovision"
+          fastlane run resign ipa_path:app.ipa signing_identity:"$(security find-identity -v -p codesigning | grep -o '".*"' | head -1)" provisioning_profile:"profile.mobileprovision" output_path:"resigned.ipa"
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: resigned-ipa
+          path: resigned.ipa
